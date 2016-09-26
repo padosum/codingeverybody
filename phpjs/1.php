@@ -11,6 +11,7 @@
     <h1>JavaScript</h1>
     <script type="text/javascript">
       document.write(10+10);
+      docment.write("Hello World")
     </script>
   </body>
 </html>
