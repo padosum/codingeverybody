@@ -39,24 +39,25 @@
           작성자: <input type="text" name="author">
         </p>
         <p>
-          본문: <textarea name="description"></textarea>
+          본문: <textarea name="description" id="description"></textarea>
         </p>
+        <input type="hidden" role="uploadcare-uploader" />
         <input type="submit" name="name">
       </form>
-
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/57eb2372bb785b3a47cd9af4/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-        </script>
-        <!--End of Tawk.to Script-->
       </article>
+      <script>
+      UPLOADCARE_PUBLIC_KEY = "fd90d635ebf47fb8df1e";
+      </script>
+      <script charset="utf-8" src="//ucarecdn.com/widget/2.10.0/uploadcare/uploadcare.full.min.js"></script>
+
+      <script>
+        // role의 값이 uploadcare-uploader인 태그를 업로드 위젯으로 만들어라.
+        var singleWidget = uploadcare.SingleWidget('[role=uploadcare-uploader]');
+        // 그 위젯을 통해 업로드가 끝났을 때
+        singleWidget.onUploadComplete(function(info){
+          // id 값이 description인 태그의 값 뒤에 업로드한 이미지 파일의 주소를 이미지 태그와 함께 첨부하라.
+          document.getElementById('description').value = document.getElementById('description').value + '<img src="'+info.cdnUrl+'">';
+        });
+      </script>
   </body>
 </html>
